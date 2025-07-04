@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/03 19:16:48 by houarrak          #+#    #+#             */
+/*   Updated: 2025/07/03 20:18:55 by houarrak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+void destroy_all_mutex(t_rules *rules)
+{
+	int i = 0;
+	while (i < rules->nb_philo)
+		pthread_mutex_destroy(&rules->forks[i++]);
+	pthread_mutex_destroy(&rules->print_mutex);
+	pthread_mutex_destroy(&rules->meal_mutex);
+	pthread_mutex_destroy(&rules->end_mutex);
+}
+
+int	main(int ac, char **av)
+{
+	t_rules		rules;
+	pthread_t	monitor;
+	int			i;
+
+	if (parse_args(&rules, ac, av) || init_philos_and_forks(&rules))
+		return (printf("Error: Invalid arguments or init failed\n"), 1);
+
+	rules.start_time = get_time_ms();
+
+	for (i = 0; i < rules.nb_philo; i++)
+	{
+		rules.philos[i].last_meal = rules.start_time;
+		if (pthread_create(&rules.philos[i].thread, NULL, philo_routine, &rules.philos[i]) != 0)
+			return (printf("Error: pthread_create\n"), 1);
+	}
+	if (pthread_create(&monitor, NULL, monitor_routine, &rules) != 0)
+		return (printf("Error: monitor thread\n"), 1);
+
+	pthread_join(monitor, NULL);
+	for (i = 0; i < rules.nb_philo; i++)
+		pthread_join(rules.philos[i].thread, NULL);
+
+	destroy_all_mutex(&rules);
+	free(rules.forks);
+	free(rules.philos);
+	return (0);
+}
