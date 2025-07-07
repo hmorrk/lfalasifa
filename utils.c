@@ -6,17 +6,11 @@
 /*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:19:17 by houarrak          #+#    #+#             */
-/*   Updated: 2025/07/03 20:24:26 by houarrak         ###   ########.fr       */
+/*   Updated: 2025/07/07 21:17:04 by houarrak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	error_msg(const char *msg)
-{
-	printf("Error: %s\n", msg);
-	return (1);
-}
 
 static int	ft_isdigit(char c)
 {
@@ -55,7 +49,7 @@ long	ft_atol(const char *str)
 		str++;
 		len++;
 	}
-    if (*str != '\0')
+	if (*str != '\0')
 		return (-1);
 	if (len > 10 || res > INT_MAX)
 		return (-1);
@@ -72,8 +66,7 @@ long	get_time_ms(void)
 	return (ms);
 }
 
-
-void ft_usleep(long time_in_ms)
+void	ft_usleep(long time_in_ms)
 {
 	long	start;
 

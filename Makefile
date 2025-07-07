@@ -1,9 +1,9 @@
 NAME		= philo
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -pthread
+CFLAGS		= -Wall -Wextra -Werror -pthread #-fsanitize=thread -g
 
-SRCS		= main.c init.c monitor.c routine.c utils.c 
+SRCS		= main.c init.c monitor.c routine.c utils.c utilsv2.c
 OBJS		= $(SRCS:.c=.o)
 
 INCS		= philo.h
