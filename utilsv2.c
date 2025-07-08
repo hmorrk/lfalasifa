@@ -6,7 +6,7 @@
 /*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:07:14 by houarrak          #+#    #+#             */
-/*   Updated: 2025/07/07 21:17:40 by houarrak         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:54:07 by houarrak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void	print_status(t_philo *philo, char *msg)
 
 	pthread_mutex_lock(&philo->rules->print_mutex);
 	pthread_mutex_lock(&philo->rules->end_mutex);
-	if (!philo->rules->simulation_end || is_died(msg))
+	if ((!philo->rules->simulation_end && !is_died(msg)) || (is_died(msg)
+			&& !philo->rules->philo_died))
 	{
+		if (is_died(msg))
+			philo->rules->philo_died = 1;
 		timestamp = get_time_ms() - philo->rules->start_time;
 		printf("%ld %d %s\n", timestamp, philo->id, msg);
 	}

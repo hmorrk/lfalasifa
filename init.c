@@ -6,7 +6,7 @@
 /*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:18:16 by houarrak          #+#    #+#             */
-/*   Updated: 2025/07/07 21:15:15 by houarrak         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:51:41 by houarrak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	parse_args(t_rules *rules, int ac, char **av)
 	else
 		rules->nb_meals_required = 0;
 	rules->simulation_end = 0;
+	rules->philo_died = 0;
 	if (rules->nb_philo < 1 || rules->time_to_die < 0 || rules->time_to_eat < 0
 		|| rules->time_to_sleep < 0 || (ac == 6
 			&& rules->nb_meals_required < 1))

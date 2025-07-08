@@ -6,7 +6,7 @@
 /*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:40:50 by houarrak          #+#    #+#             */
-/*   Updated: 2025/07/07 21:32:24 by houarrak         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:07:52 by houarrak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	*monitor_routine(void *arg)
 			return (NULL);
 		if (check_all_full(rules))
 			return (NULL);
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }

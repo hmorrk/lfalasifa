@@ -6,7 +6,7 @@
 /*   By: houarrak <houarrak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:11:44 by houarrak          #+#    #+#             */
-/*   Updated: 2025/07/07 21:31:49 by houarrak         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:53:14 by houarrak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ struct					s_rules
 	long				time_to_sleep;
 	int					nb_meals_required;
 	int					simulation_end;
+	int					philo_died;
 	long				start_time;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print_mutex;
